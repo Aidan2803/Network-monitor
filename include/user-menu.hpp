@@ -1,32 +1,69 @@
-#include "state.hpp"
+#pragma once
 
-class Menu {
+#include <iostream>
+
+class UserMenu;
+class State;
+class StateDataBaseMenu;
+class StateMonitoringMenu;
+class StateMainMenu;
+
+class State {
 public:
-  Menu* CreateMenu() {
-    if(menu_){
-        return menu_;
-    } 
-
-    menu_ = Menu();
-    
-  }
-
-  ~Menu() {
-    if (state_) {
-      delete state_;
+    void SetUserMenu(UserMenu* menu) {
+        um_ = menu;
     }
-  }
+    virtual void PrintUserMenuOptions() = 0;
 
-  void TransitionToState(State* state) {
-    if (this->state_) {
-      delete state_;
+protected:
+    UserMenu* um_;
+};
+
+class UserMenu {
+public:
+    static UserMenu* GetUserMenu() {
+        if (!user_menu_) {
+            user_menu_ = new UserMenu();
+        }
+        return user_menu_;
     }
-    state_ = state;
-    state_->SetMenu(this);
-  }
+
+    ~UserMenu() {
+        if (state_) {
+            delete state_;
+        }
+    }
+
+    void TransitionToState(State* state) {
+        if (state_) {
+            delete state_;
+        }
+        state_ = state;
+        state_->SetUserMenu(this);
+    }
+
+    void PrintUserMenu() {
+        state_->PrintUserMenuOptions();
+    }
 
 private:
-    Menu* menu_;
-  Menu() {}
-  State* state_;
+    UserMenu() : state_(nullptr) {}
+
+    static UserMenu* user_menu_;
+    State* state_;
+};
+
+class StateDataBaseMenu : public State {
+public:
+    void PrintUserMenuOptions() override;
+};
+
+class StateMonitoringMenu : public State {
+public:
+    void PrintUserMenuOptions() override;
+};
+
+class StateMainMenu : public State {
+public:
+    void PrintUserMenuOptions() override;
 };
