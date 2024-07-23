@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "state.hpp"
 #include "user-menu.hpp"
 
 int main() {

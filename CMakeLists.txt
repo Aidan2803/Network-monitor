@@ -13,6 +13,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 set(SOURCES
     src/main.cpp
     src/user-menu.cpp
+    src/state.cpp
 )
 
 # Add an executable target to build from the source files
