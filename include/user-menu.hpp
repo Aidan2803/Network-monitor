@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+enum class StateID { kMainMenuState = 0, kMonitoringMenuState = 1, kDataBaseMenuState = 2 };
+
 class UserMenu;
 class State;
 class StateDataBaseMenu;
@@ -10,60 +12,49 @@ class StateMainMenu;
 
 class State {
 public:
-    void SetUserMenu(UserMenu* menu) {
-        um_ = menu;
-    }
-    virtual void PrintUserMenuOptions() = 0;
+  void SetUserMenu(UserMenu* menu) { um_ = menu; }
+  virtual void PrintUserMenuOptions() = 0;
+  StateID GetStateID() { return state_id_; }
 
 protected:
-    UserMenu* um_;
+State(StateID stateid):um_{nullptr}, state_id_{stateid}{}
+  UserMenu* um_;
+  StateID state_id_;
 };
 
 class UserMenu {
 public:
-    static UserMenu* GetUserMenu() {
-        if (!user_menu_) {
-            user_menu_ = new UserMenu();
-        }
-        return user_menu_;
-    }
+  static UserMenu* GetUserMenu();
 
-    ~UserMenu() {
-        if (state_) {
-            delete state_;
-        }
-    }
+  ~UserMenu();
 
-    void TransitionToState(State* state) {
-        if (state_) {
-            delete state_;
-        }
-        state_ = state;
-        state_->SetUserMenu(this);
-    }
+  void TransitionToState(State* state);
 
-    void PrintUserMenu() {
-        state_->PrintUserMenuOptions();
-    }
+  void PrintUserMenu();
+
+  StateID GetStateID();
 
 private:
-    UserMenu() : state_(nullptr) {}
+  UserMenu() : state_(nullptr) {}
 
-    static UserMenu* user_menu_;
-    State* state_;
-};
-
-class StateDataBaseMenu : public State {
-public:
-    void PrintUserMenuOptions() override;
-};
-
-class StateMonitoringMenu : public State {
-public:
-    void PrintUserMenuOptions() override;
+  static UserMenu* user_menu_;
+  State* state_;
 };
 
 class StateMainMenu : public State {
 public:
-    void PrintUserMenuOptions() override;
+  StateMainMenu();
+  void PrintUserMenuOptions() override;
+};
+
+class StateMonitoringMenu : public State {
+public:
+  StateMonitoringMenu();
+  void PrintUserMenuOptions() override;
+};
+
+class StateDataBaseMenu : public State {
+public:
+  StateDataBaseMenu();
+  void PrintUserMenuOptions() override;
 };
