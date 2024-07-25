@@ -14,6 +14,7 @@ set(SOURCES
     src/main.cpp
     src/user-menu.cpp
     src/state.cpp
+    src/user-menu-handler.cpp
 )
 
 # Add an executable target to build from the source files

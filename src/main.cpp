@@ -1,11 +1,8 @@
 #include <iostream>
 
-#include "state.hpp"
-#include "user-menu.hpp"
+#include "user-menu-handler.hpp"
 
 int main() {
-  UserMenu* um = UserMenu::GetUserMenu();
-  um->TransitionToState(new StateMainMenu());
-  um->PrintUserMenu();
-  um->PrintUserMenu();
+  UserMenuHandler* umh = UserMenuHandler::GetUserMenuHandler();
+  umh->UserMenuLoop();
 }
