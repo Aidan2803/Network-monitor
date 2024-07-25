@@ -34,7 +34,6 @@ void StateMainMenu::PrintUserMenuOptions() const {
   std::cout << "--- Main menu ---\n";
   PrintOptionsVector();
   std::cout << "Choose your option and press enter please\n";
-  um_->TransitionToState(new StateMonitoringMenu());
 }
 
 void StateMonitoringMenu::PrintUserMenuOptions() const {
@@ -42,7 +41,6 @@ void StateMonitoringMenu::PrintUserMenuOptions() const {
   std::cout << "--- Monitoring menu ---\n";
   PrintOptionsVector();
   std::cout << "Choose your option and press enter please\n";
-  um_->TransitionToState(new StateDataBaseMenu());
 }
 
 void StateDataBaseMenu::PrintUserMenuOptions() const {
@@ -50,7 +48,6 @@ void StateDataBaseMenu::PrintUserMenuOptions() const {
   std::cout << "--- Data base menu ---\n";
   PrintOptionsVector();
   std::cout << "Choose your option and press enter please\n";
-  um_->TransitionToState(new StateMonitoringMenu());
 }
 
 void StateMainMenu::HandleUserInputForState(char input) {
@@ -73,13 +70,13 @@ void StateMainMenu::HandleUserInputForState(char input) {
 void StateMonitoringMenu::HandleUserInputForState(char input) {
   switch (input) {
     case '1':
-      um_->TransitionToState(new StateMonitoringMenu);
+      // TODO: transition to the Default Monitoring state 
       break;
     case '2':
-      um_->TransitionToState(new StateDataBaseMenu);
+      um_->TransitionToState(new StateDataMainMenu);
       break;
     case '3':
-      // TODO: exit here
+    // TODO: exit here
       break;
     default:
       std::cout << "No valid input was provided\n";
@@ -90,10 +87,10 @@ void StateMonitoringMenu::HandleUserInputForState(char input) {
 void StateDataBaseMenu::HandleUserInputForState(char input) {
   switch (input) {
     case '1':
-      um_->TransitionToState(new StateMonitoringMenu);
+      // TODO: to implement Data Base Class first
       break;
     case '2':
-      um_->TransitionToState(new StateDataBaseMenu);
+      // TODO: to implement Data Base Class first
       break;
     case '3':
       // TODO: exit here
