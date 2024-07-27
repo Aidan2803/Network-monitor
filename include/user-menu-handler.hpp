@@ -8,9 +8,9 @@ public:
 
 private:
   UserMenuHandler(){};
-
   void InitUserMenuHandler();
 
+private:
   static UserMenuHandler* user_menu_handler_;
   char user_input_;
   UserMenu* um_;

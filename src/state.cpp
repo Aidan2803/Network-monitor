@@ -8,7 +8,7 @@ void State::PrintOptionsVector() const {
   }
 }
 
-StateID State::GetStateID() const{ return state_id_; }
+StateID State::GetStateID() const { return state_id_; }
 
 size_t State::OptionsAmount() const { return menu_options_vector_.size(); }
 
@@ -70,13 +70,13 @@ void StateMainMenu::HandleUserInputForState(char input) {
 void StateMonitoringMenu::HandleUserInputForState(char input) {
   switch (input) {
     case '1':
-      // TODO: transition to the Default Monitoring state 
+      // TODO: transition to the Default Monitoring state
       break;
     case '2':
       um_->TransitionToState(new StateDataMainMenu);
       break;
     case '3':
-    // TODO: exit here
+      // TODO: exit here
       break;
     default:
       std::cout << "No valid input was provided\n";

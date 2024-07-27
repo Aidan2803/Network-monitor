@@ -33,11 +33,10 @@ size_t UserMenu::GetMenuOptionsAmount() const { return state_->OptionsAmount(); 
 void UserMenu::RetreiveUserInput() {
   char input = '0';
   std::cin >> input;
-  if (user_input_ >= user_menu_constants::ZERO_ASCII_VALUE && user_input_ <= user_menu_constants::ZERO_ASCII_VALUE + GetMenuOptionsAmount()) {
+  if (user_input_ >= user_menu_constants::ZERO_ASCII_VALUE &&
+      user_input_ <= user_menu_constants::ZERO_ASCII_VALUE + GetMenuOptionsAmount()) {
     user_input_ = input;
   }
 }
 
-void UserMenu::HandleUserInput(){
-    state_->HandleUserInputForState(user_input_);
-}
+void UserMenu::HandleUserInput() { state_->HandleUserInputForState(user_input_); }

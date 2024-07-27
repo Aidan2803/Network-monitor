@@ -1,20 +1,16 @@
-cmake_minimum_required(VERSION 3.10)  # Minimum required CMake version
+cmake_minimum_required(VERSION 3.10)
 
-project(Network-Monitor)  # Name of the project
+project(Network-Monitor) 
 set(CMAKE_BUILD_TYPE Debug)
 
-include_directories(${CURSES_INCLUDE_DIR})
-link_libraries(${CURSES_LIBRARIES})
-
-# Add include directory to search path for header files
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-# Add source files
 set(SOURCES
     src/main.cpp
     src/user-menu.cpp
     src/state.cpp
     src/user-menu-handler.cpp
+    stc/network-interface-handler.cpp
 )
 
 # Add an executable target to build from the source files

@@ -1,0 +1,4 @@
+class MonitoringHandler {
+public:
+private:
+};

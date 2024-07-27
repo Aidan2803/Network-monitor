@@ -2,8 +2,8 @@
 
 #include <vector>
 
-#include "state.hpp"
 #include "constnts.hpp"
+#include "state.hpp"
 
 class UserMenu {
 public:
@@ -20,6 +20,8 @@ public:
 
 private:
   UserMenu() : state_(nullptr) {}
+
+private:
   static UserMenu* user_menu_;
   State* state_;
   char user_input_;
