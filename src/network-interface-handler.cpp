@@ -2,7 +2,7 @@
 
 NetworkInterfaceHandler* NetworkInterfaceHandler::nih_ = nullptr;
 
-static NetworkInterfaceHandler* NetworkInterfaceHandler::GetNetworkInterfaceHandlerInstance() {
+NetworkInterfaceHandler* NetworkInterfaceHandler::GetNetworkInterfaceHandlerInstance() {
   if (nih_ == nullptr) {
     nih_ = new NetworkInterfaceHandler();
   }
@@ -17,12 +17,12 @@ void NetworkInterfaceHandler::RetreiveAllInterfaces() {
     std::cerr << "Can not find any devices to monitor\n";
   }
 
-  CountNetworkInterfaceSize();
+  CountNetworkInterfaceListSize();
 }
 
 pcap_if_t* NetworkInterfaceHandler::GetNetworkInterfacesList() const { return network_interfaces_list_; }
 
-void NetworkInterfaceHandler::CountNetworkInterfaceSize() {
+void NetworkInterfaceHandler::CountNetworkInterfaceListSize() {
   uint8_t counter{};
   pcap_if_t* current_node = network_interfaces_list_;
 

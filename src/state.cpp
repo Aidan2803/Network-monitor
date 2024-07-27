@@ -73,7 +73,7 @@ void StateMonitoringMenu::HandleUserInputForState(char input) {
       // TODO: transition to the Default Monitoring state
       break;
     case '2':
-      um_->TransitionToState(new StateDataMainMenu);
+      um_->TransitionToState(new StateDataBaseMenu);
       break;
     case '3':
       // TODO: exit here

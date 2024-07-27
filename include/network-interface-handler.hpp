@@ -1,3 +1,4 @@
+#include <iostream>
 #include <pcap/pcap.h>
 
 class NetworkInterfaceHandler {
@@ -8,7 +9,7 @@ public:
 
 private:
   NetworkInterfaceHandler() = default;
-  void CountNetworkInterfaceSize();
+  void CountNetworkInterfaceListSize();
 
 private:
   static NetworkInterfaceHandler* nih_;
