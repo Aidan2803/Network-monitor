@@ -12,9 +12,9 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 set(SOURCES
     src/main.cpp
-    src/user-menu.cpp
+    src/info-displayer.cpp
     src/state.cpp
-    src/user-menu-handler.cpp
+    src/info-displayer-handler.cpp
     src/network-interface-handler.cpp
 )
 

@@ -5,12 +5,12 @@
 #include "constnts.hpp"
 #include "state.hpp"
 
-class UserMenu {
+class InfoDisplayer {
 public:
-  static UserMenu* GetUserMenu();
-  ~UserMenu();
+  static InfoDisplayer* GetInfoDisplayer();
+  ~InfoDisplayer();
   void TransitionToState(State* state);
-  void PrintUserMenu() const;
+  void PrintInfo() const;
 
   void RetreiveUserInput();
   void HandleUserInput();
@@ -19,10 +19,10 @@ public:
   StateID GetStateID() const;
 
 private:
-  UserMenu() : state_(nullptr) {}
+  InfoDisplayer() : state_(nullptr) {}
 
 private:
-  static UserMenu* user_menu_;
+  static InfoDisplayer* user_menu_;
   State* state_;
   char user_input_;
 };

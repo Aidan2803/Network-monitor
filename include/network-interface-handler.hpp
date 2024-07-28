@@ -1,5 +1,6 @@
-#include <iostream>
 #include <pcap/pcap.h>
+
+#include <iostream>
 
 class NetworkInterfaceHandler {
 public:

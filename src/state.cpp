@@ -1,62 +1,63 @@
 #include "state.hpp"
 
-#include "user-menu.hpp"
+#include "info-displayer.hpp"
 
-void State::PrintOptionsVector() const {
-  for (int i = 0; i < menu_options_vector_.size(); i++) {
-    std::cout << menu_options_vector_[i];
+void State::PrintInfoVector() const {
+  for (int i = 0; i < info_options_vector_.size(); i++) {
+    std::cout << info_options_vector_[i];
   }
 }
 
 StateID State::GetStateID() const { return state_id_; }
 
-size_t State::OptionsAmount() const { return menu_options_vector_.size(); }
+size_t State::OptionsAmount() const { return info_options_vector_.size(); }
 
 StateMainMenu::StateMainMenu() : State(StateID::kMainMenuState) {
-  menu_options_vector_.push_back("1 - Monitoring\n");
-  menu_options_vector_.push_back("2 - Data Base menu\n");
-  menu_options_vector_.push_back("3 - Exit\n");
+  info_options_vector_.push_back("1 - Monitoring\n");
+  info_options_vector_.push_back("2 - Data Base menu\n");
+  info_options_vector_.push_back("3 - Exit\n");
 }
 StateMonitoringMenu::StateMonitoringMenu() : State(StateID::kMonitoringMenuState) {
-  menu_options_vector_.push_back("1 - Default monitoring\n");
-  menu_options_vector_.push_back("2 - Back\n");
-  menu_options_vector_.push_back("3 - Exit\n");
+  info_options_vector_.push_back("1 - Default monitoring\n");
+  info_options_vector_.push_back("2 - Back\n");
+  info_options_vector_.push_back("3 - Exit\n");
 }
 StateDataBaseMenu::StateDataBaseMenu() : State(StateID::kDataBaseMenuState) {
-  menu_options_vector_.push_back("1 - Upload to DB\n");
-  menu_options_vector_.push_back("2 - Upload from DB\n");
-  menu_options_vector_.push_back("3 - Back\n");
-  menu_options_vector_.push_back("4 - Exit\n");
+  info_options_vector_.push_back("1 - Upload to DB\n");
+  info_options_vector_.push_back("2 - Upload from DB\n");
+  info_options_vector_.push_back("3 - Back\n");
+  info_options_vector_.push_back("4 - Exit\n");
 }
 
-void StateMainMenu::PrintUserMenuOptions() const {
-  system("clear");
+void StateMainMenu::PrintUserInfo() const {
+  // system("clear");
   std::cout << "--- Main menu ---\n";
-  PrintOptionsVector();
+  PrintInfoVector();
   std::cout << "Choose your option and press enter please\n";
 }
 
-void StateMonitoringMenu::PrintUserMenuOptions() const {
+void StateMonitoringMenu::PrintUserInfo() const {
   system("clear");
   std::cout << "--- Monitoring menu ---\n";
-  PrintOptionsVector();
+  PrintInfoVector();
   std::cout << "Choose your option and press enter please\n";
 }
 
-void StateDataBaseMenu::PrintUserMenuOptions() const {
+void StateDataBaseMenu::PrintUserInfo() const {
   system("clear");
   std::cout << "--- Data base menu ---\n";
-  PrintOptionsVector();
+  PrintInfoVector();
   std::cout << "Choose your option and press enter please\n";
 }
 
 void StateMainMenu::HandleUserInputForState(char input) {
+  std::cout << input << "\n";
   switch (input) {
     case '1':
-      um_->TransitionToState(new StateMonitoringMenu);
+      info_disp_->TransitionToState(new StateMonitoringMenu);
       break;
     case '2':
-      um_->TransitionToState(new StateDataBaseMenu);
+      info_disp_->TransitionToState(new StateDataBaseMenu);
       break;
     case '3':
       // TODO: exit here
@@ -73,7 +74,7 @@ void StateMonitoringMenu::HandleUserInputForState(char input) {
       // TODO: transition to the Default Monitoring state
       break;
     case '2':
-      um_->TransitionToState(new StateDataBaseMenu);
+      info_disp_->TransitionToState(new StateDataBaseMenu);
       break;
     case '3':
       // TODO: exit here

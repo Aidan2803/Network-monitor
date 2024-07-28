@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "user-menu-handler.hpp"
+#include "info-displayer-handler.hpp"
 
 int main() {
-  UserMenuHandler* umh = UserMenuHandler::GetUserMenuHandler();
-  umh->UserMenuLoop();
+  InfoDisplayerHandler* info_disp_handler = InfoDisplayerHandler::GetInfoDisplayerHandler();
+  info_disp_handler->InfoDisplayerLoop();
 }
